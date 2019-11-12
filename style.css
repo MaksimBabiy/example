@@ -1,0 +1,48 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+button {
+border: 0;
+background: linear-gradient(90deg, #FB641A 0%, #FC3309 100%);
+border-radius: 300px;
+padding: 25px 55px;
+padding-right: 55px;
+color: white;
+text-transform: uppercase;
+font-size: 24px;
+line-height: 16px;
+text-decoration: none;
+}
+.main__container div {
+background-position: center;
+border: 1px solid rgb(232, 236, 10);
+position: relative;
+transition: all 2s;
+}
+.main__container div::after {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: slateblue;
+z-index: 0;
+}
+.main__container div.new::after {
+content: none;
+}
+.btn__container{
+display: flex;
+flex-direction: column;
+}
+.btn__container button {
+margin: 10px;
+}
