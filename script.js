@@ -71,7 +71,6 @@ function flipCard(e) {
     return;
   }
   secondCard = this
-  console.log({firstCard,secondCard})
   checkForMatch()
 }
 
