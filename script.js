@@ -88,6 +88,7 @@ function flipCard(e) {
 function convolk(){
   Array.from(main_block.children).forEach(item=>{
     item.classList.add('new')
+  setTimeout(()=>{item.classList.remove('new')},2000)
   })
   return '93FEETOFSMOKE'
 }
