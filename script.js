@@ -4,7 +4,7 @@ const card1 = "./img/1.jpg",
       card4 = "./img/4.jpg",
       card5 = "./img/5.jpg",
       card6 = "./img/6.jpg"
-const arr = [card1,card2,card3,card4,card5,card6,card1,card2,card3,card4,card5,card6,card1,card2,card3,card4,card5,card6,card1,card2,card3,card4,card5,card6,card1,card2,card3,card4,card5,card6,card1,card2,card3,card4,card5,card6,card1,card2,card3,card4,card5,card6,]
+const arr = [card1,card2,card3,card4,card5,card6]
 const main_block = document.createElement('div')
 
 function addStyles(sizeX,sizeY) {
@@ -28,9 +28,20 @@ function createGame(size) {
     const content_block = document.createElement('div')
     main_block.appendChild(content_block)
   }
+  let btnReset = document.createElement('button')
+  btnReset.innerHTML = 'RESET'
+  document.body.appendChild(btnReset)
+  btnReset.addEventListener('click',()=>{
+    Array.from(main_block.children).forEach(item => {
+      item.classList.remove('new')
+      item.addEventListener('click', flipCard)
+      let randomPos = Math.floor(Math.random() * arr.length)
+      item.style.order = randomPos
+    })
+  })
   const items = main_block.children
   Array.from(items).forEach((item,index)=>{
-   
+    index = index % 6;
     item.style.backgroundImage = `url(${arr[index]})`
     item.style.backgroundSize = "100px 100px";
     let randomPos = Math.floor(Math.random() * arr.length)
@@ -72,6 +83,13 @@ function flipCard(e) {
   }
   secondCard = this
   checkForMatch()
+}
+
+function convolk(){
+  Array.from(main_block.children).forEach(item=>{
+    item.classList.add('new')
+  })
+  return '93FEETOFSMOKE'
 }
 
 function checkForMatch() {
