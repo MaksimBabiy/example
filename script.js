@@ -6,18 +6,18 @@ const card1 = "./img/1.jpg",
       card6 = "./img/6.jpg"
 const arr = [card1,card2,card3,card4,card5,card6]
 const main_block = document.createElement('div')
+let scoreV = 0;
 
 function addStyles(sizeX,sizeY) {
   let style = document.createElement('style');
   style.textContent = `
   .main__container {
       display: grid;
-      border: 5px solid slateblue;
       grid-template-columns: ${"100px ".repeat(sizeX)};
       grid-template-rows: ${"100px ".repeat(sizeY)};
       max-width: 2200px;
       max-height: 2200px;
-      grid-gap: 3px;
+      grid-gap: 8px;
   }
   `
   document.head.appendChild(style)
@@ -28,6 +28,11 @@ function createGame(size) {
     const content_block = document.createElement('div')
     main_block.appendChild(content_block)
   }
+  let score = document.createElement('span')
+  score.innerHTML = `Кол-во ходов: ${scoreV}`
+  document.body.appendChild(score)
+
+  // RESET
   let btnReset = document.createElement('button')
   btnReset.innerHTML = 'RESET'
   document.body.appendChild(btnReset)
@@ -37,8 +42,11 @@ function createGame(size) {
       item.addEventListener('click', flipCard)
       let randomPos = Math.floor(Math.random() * arr.length)
       item.style.order = randomPos
+      scoreV = 0;
+      document.querySelector('span').innerHTML = `Кол-во ходов: ${scoreV}`;
     })
   })
+  // RESET //
   const items = main_block.children
   Array.from(items).forEach((item,index)=>{
     index = index % 6;
@@ -51,6 +59,7 @@ function createGame(size) {
   Array.from(items).forEach(item => {
     item.addEventListener('click', flipCard)
   })
+  return score
 }
 document.querySelector('body').appendChild(main_block)
 const btn__container = document.querySelector('.btn__container')
@@ -63,7 +72,7 @@ playBtn.forEach(item => {
     } else if (main_block.children.length == 24) {
       addStyles(6,4)
     } else {
-      addStyles(7,6)
+      addStyles(8,6)
     }
     btn__container.style.display = 'none'
   })
@@ -72,7 +81,7 @@ let firstCard, secondCard
 let lockBoard = false
 let hasFlippedCard = false
 
-function flipCard(e) {
+function flipCard() {
   if(lockBoard) return;
   if(firstCard == this) return;
   this.className = 'new';
@@ -82,7 +91,9 @@ function flipCard(e) {
     return;
   }
   secondCard = this
+  scoreV++
   checkForMatch()
+  document.querySelector('span').innerHTML = `Кол-во ходов: ${scoreV}`;
 }
 
 function convolk(){

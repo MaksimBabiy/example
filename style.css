@@ -1,6 +1,7 @@
 *{
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
 }
 body {
     display: flex;
@@ -8,6 +9,7 @@ body {
     align-items: center;
     height: 100vh;
     flex-direction: column;
+    background: rgb(94, 190, 245);
 }
 button {
 border: 0;
@@ -24,9 +26,13 @@ outline: none;
 }
 .main__container div {
 background-position: center;
-border: 1px solid rgb(232, 236, 10);
+border: 1px solid rgb(94, 190, 245);
 position: relative;
 transition: all 2s;
+box-shadow: 0px 0px 11px 6px rgba(0,0,0,0.28);
+}
+span {
+    color: white;
 }
 .main__container div::after {
 content: '';
@@ -35,11 +41,17 @@ top: 0;
 left: 0;
 right: 0;
 bottom: 0;
-background: slateblue;
+background-image: url(./img/logo.png);
+background-position: center;
+background-size: 100px 100px;
 z-index: 0;
+opacity: 1;
+transition: all 0.5s;
 }
 .main__container div.new::after {
-content: none;
+content: '';
+opacity: 0;
+
 }
 .btn__container{
 display: flex;
