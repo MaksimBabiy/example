@@ -15,9 +15,7 @@ button {
 border: 0;
 background: linear-gradient(90deg, #FB641A 0%, #FC3309 100%);
 border-radius: 300px;
-padding: 25px 55px;
-padding-right: 55px;
-color: white;
+padding: 25px 55px;color: white;
 text-transform: uppercase;
 font-size: 24px;
 line-height: 16px;
@@ -29,7 +27,7 @@ background-position: center;
 border: 1px solid rgb(94, 190, 245);
 position: relative;
 transition: all 2s;
-box-shadow: 0px 0px 11px 6px rgba(0,0,0,0.28);
+box-shadow: 0 0 11px 6px rgba(0,0,0,0.28);
 }
 span {
     color: white;

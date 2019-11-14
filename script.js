@@ -3,9 +3,9 @@ const card1 = "./img/1.jpg",
       card3 = "./img/3.jpg",
       card4 = "./img/4.jpg",
       card5 = "./img/5.jpg",
-      card6 = "./img/6.jpg"
-const arr = [card1,card2,card3,card4,card5,card6]
-const main_block = document.createElement('div')
+      card6 = "./img/6.jpg";
+const arr = [card1,card2,card3,card4,card5,card6];
+const main_block = document.createElement('div');
 let scoreV = 0;
 
 function addStyles(sizeX,sizeY) {
@@ -19,29 +19,28 @@ function addStyles(sizeX,sizeY) {
       max-height: 2200px;
       grid-gap: 8px;
   }
-  `
+  `;
   document.head.appendChild(style)
 }
 function createGame(size) {
-  main_block.classList.add('main__container')
+  main_block.classList.add('main__container');
   for (let i = 0; i < size; i++) {
-    const content_block = document.createElement('div')
+    const content_block = document.createElement('div');
     main_block.appendChild(content_block)
   }
-  let score = document.createElement('span')
-  score.innerHTML = `Кол-во ходов: ${scoreV}`
-  document.body.appendChild(score)
+  let score = document.createElement('span');
+  score.innerHTML = `Кол-во ходов: ${scoreV}`;
+  document.body.appendChild(score);
 
   // RESET
-  let btnReset = document.createElement('button')
-  btnReset.innerHTML = 'RESET'
-  document.body.appendChild(btnReset)
+  let btnReset = document.createElement('button');
+  btnReset.innerHTML = 'RESET';
+  document.body.appendChild(btnReset);
   btnReset.addEventListener('click',()=>{
     Array.from(main_block.children).forEach(item => {
-      item.classList.remove('new')
-      item.addEventListener('click', flipCard)
-      let randomPos = Math.floor(Math.random() * arr.length)
-      item.style.order = randomPos
+      item.classList.remove('new');
+      item.addEventListener('click', flipCard);
+      item.style.order = Math.floor(Math.random() * arr.length);
       scoreV = 0;
       document.querySelector('span').innerHTML = `Кол-во ходов: ${scoreV}`;
     })
@@ -52,8 +51,7 @@ function createGame(size) {
     index = index % 6;
     item.style.backgroundImage = `url(${arr[index]})`
     item.style.backgroundSize = "100px 100px";
-    let randomPos = Math.floor(Math.random() * arr.length)
-    item.style.order = randomPos
+    item.style.order = Math.floor(Math.random() * arr.length)
     item.setAttribute(`data`, `${arr[index].slice(6,7)}`)
   })
   Array.from(items).forEach(item => {
@@ -67,9 +65,9 @@ const playBtn = document.querySelectorAll('.btn__container button')
 playBtn.forEach(item => {
   item.addEventListener('click', () => {
     createGame(item.getAttribute('dataSize'))
-    if (main_block.children.length == 12) {
+    if (main_block.children.length === 12) {
       addStyles(4,3)
-    } else if (main_block.children.length == 24) {
+    } else if (main_block.children.length === 24) {
       addStyles(6,4)
     } else {
       addStyles(8,6)
@@ -83,22 +81,22 @@ let hasFlippedCard = false
 
 function flipCard() {
   if(lockBoard) return;
-  if(firstCard == this) return;
+  if(firstCard === this) return;
   this.className = 'new';
   if (!hasFlippedCard) {
     hasFlippedCard = true;
-    firstCard = this
+    firstCard = this;
     return;
   }
-  secondCard = this
-  scoreV++
-  checkForMatch()
+  secondCard = this;
+  scoreV++;
+  checkForMatch();
   document.querySelector('span').innerHTML = `Кол-во ходов: ${scoreV}`;
 }
 
 function convolk(){
   Array.from(main_block.children).forEach(item=>{
-    item.classList.add('new')
+    item.classList.add('new');
   setTimeout(()=>{item.classList.remove('new')},2000)
   })
   return '93FEETOFSMOKE'
